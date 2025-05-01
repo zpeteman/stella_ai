@@ -4,10 +4,12 @@ Stella is an interactive AI assistant with advanced voice recognition and text-t
 
 ## Features
 
-- Natural language voice input
-- Speech-to-text transcription
-- Conversational AI responses
-- Customizable interaction modes
+- 🎙️ Natural language voice input
+- 🔊 Speech-to-text transcription
+- 💬 Conversational AI responses
+- 🛠️ Highly customizable AI assistant
+- 🌐 Multiple interaction modes (CLI, Web)
+- 🤖 Personalized AI personality
 
 ## Requirements
 
@@ -60,7 +62,16 @@ pip install -r requirements.txt
 source ai/bin/activate
 ```
 
-### Run Streamlit Web App
+### Run CLI Application
+```bash
+# Activate virtual environment first
+source ai/bin/activate
+
+# Run the CLI
+./<your_ai_name_script>
+```
+
+### Optional: Streamlit Web App
 ```bash
 streamlit run app.py
 ```
