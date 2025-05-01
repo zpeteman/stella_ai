@@ -67,8 +67,23 @@ source ai/bin/activate
 # Activate virtual environment first
 source ai/bin/activate
 
-# Run the CLI
+# Run the CLI (using the script named after your AI)
 ./<your_ai_name_script>
+```
+
+### CLI Usage Guide
+- Simply run the script to start an interactive conversation
+- Type your messages and receive AI responses
+- Use voice commands (when implemented)
+- Type 'exit' or 'quit' to end the conversation
+
+#### Example Interaction
+```
+$ ./luna
+Luna AI: Hello! How can I help you today?
+You: Tell me a joke
+Luna AI: Why don't scientists trust atoms? Because they make up everything! 😄
+You: quit
 ```
 
 ### Optional: Streamlit Web App
