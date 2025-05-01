@@ -1,5 +1,55 @@
+# Virtual Environment
 ai/
+venv/
+env/
+.venv/
+
+# Python bytecode
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# Configuration and Secrets
 .env
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Conversation and Personal Data
 conversation_history.json
+*.log
+*.sqlite3
+
+# AI Model and Large Files
+*.model
+*.pt
+*.pth
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Temporary files
+*.tmp
