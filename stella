@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Stella AI CLI Launcher
+
+# Get the directory of the script
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Activate virtual environment
+source "$SCRIPT_DIR/ai/bin/activate"
+
+# Change to script directory
+cd "$SCRIPT_DIR"
+
+# Run the CLI application
+python3 main.py "$@"

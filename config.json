@@ -1,0 +1,6 @@
+{
+    "ai_name": "Stella",
+    "ai_personality": "helpful and friendly AI assistant",
+    "openrouter_api_key": "",
+    "language_model": "openai/gpt-3.5-turbo"
+}

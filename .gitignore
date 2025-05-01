@@ -1,0 +1,5 @@
+ai/
+__pycache__/
+*.pyc
+.env
+conversation_history.json
