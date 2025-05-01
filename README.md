@@ -13,31 +13,61 @@ Stella is an interactive AI assistant with advanced voice recognition and text-t
 
 ## Requirements
 
+### Supported Platforms
+#### Linux Distributions
+- 🐧 Ubuntu/Debian
+- 🐧 Fedora
+- 🐧 CentOS/RHEL
+- 🐧 Arch Linux
+- 🐧 openSUSE
+- 🐧 Alpine Linux
+- 🐧 Windows Subsystem for Linux (WSL)
+
+#### Other Platforms
+- 🍎 macOS (Intel & Apple Silicon)
+- 🪟 Windows (via WSL2)
+
+### System Requirements
 - Python 3.10
 - PyTorch
 - Whisper
 - Silero VAD
 - TensorFlow
 
+### Minimum Hardware
+- 4GB RAM
+- 10GB Disk Space
+- x86_64/ARM64 Architecture
+
 ## Installation
 
 ### Automated Setup
-We've created a comprehensive setup script to make installation easy:
+We've created a comprehensive, cross-platform setup script:
 
 ```bash
 # Make the setup script executable
 chmod +x setup.sh
 
-# Run the setup script with sudo
-sudo ./setup.sh
+# Run the setup script
+./setup.sh
 ```
 
-The setup script will:
-- Install Python 3.10
-- Create a virtual environment
-- Install all required dependencies
-- Help you configure OpenRouter API
-- Allow you to personalize your AI assistant
+#### Cross-Platform Installation
+- 🌐 Automatically detects your operating system
+- 🐍 Installs Python 3.10 using native methods
+  - Linux: Package managers
+  - macOS: Homebrew
+  - Windows: WSL package manager
+- 🔧 Creates a virtual environment
+- 📦 Installs all required dependencies
+- 🔐 Helps you configure OpenRouter API
+- 🤖 Allows personalization of your AI assistant
+
+#### Troubleshooting
+- 🛠️ Ensure you have necessary permissions
+- 🔍 Check system requirements
+- 💻 For Windows: Use WSL2 for best compatibility
+- ❓ Unsupported platform? Check manual installation
 
 ### Manual Installation
 If you prefer manual setup:

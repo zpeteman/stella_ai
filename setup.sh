@@ -39,31 +39,90 @@ detect_distro() {
 
 # Install Python 3.10 based on distribution
 install_python() {
-    detect_distro
+    # Check if Python 3.10 is already installed
+    if command -v python3.10 &> /dev/null; then
+        success "Python 3.10 is already installed"
+        return
+    fi
     
-    case $DISTRO in
-        ubuntu|debian)
-            warning "Adding deadsnakes PPA for Python 3.10"
-            apt-get update
-            apt-get install -y software-properties-common
-            add-apt-repository ppa:deadsnakes/ppa -y
-            apt-get update
-            apt-get install -y python3.10 python3.10-venv python3.10-dev
+    # Detect the operating system
+    UNAME=$(uname -s)
+    DISTRO=""
+    
+    case "$UNAME" in
+        Linux)
+            if [ -f /etc/os-release ]; then
+                . /etc/os-release
+                DISTRO=$ID
+            else
+                error_exit "Unsupported Linux distribution"
+            fi
             ;;
-        
-        fedora)
-            dnf install -y python3.10 python3.10-devel
+        Darwin)
+            DISTRO="macos"
             ;;
-        
-        centos|rhel)
-            yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-            yum install -y python3.10
-            ;;
-        
         *)
-            error_exit "Unsupported distribution: $DISTRO"
+            error_exit "Unsupported operating system: $UNAME"
             ;;
     esac
+    
+    # Distribution-specific Python 3.10 installation
+    case "$DISTRO" in
+        ubuntu|debian|wsl)
+            echo "[🐧] Detected Ubuntu/Debian/WSL"
+            sudo apt-get update
+            sudo apt-get install -y software-properties-common
+            sudo add-apt-repository -y ppa:deadsnakes/ppa
+            sudo apt-get update
+            sudo apt-get install -y python3.10 python3.10-venv python3.10-dev
+            ;;
+        fedora)
+            echo "[🐧] Detected Fedora"
+            sudo dnf install -y python3.10 python3.10-devel
+            ;;
+        centos|rhel)
+            echo "[🐧] Detected CentOS/RHEL"
+            sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+            sudo yum install -y python3.10
+            ;;
+        arch)
+            echo "[🐧] Detected Arch Linux"
+            sudo pacman -Sy --noconfirm python310
+            ;;
+        opensuse-leap|opensuse-tumbleweed)
+            echo "[🐧] Detected openSUSE"
+            sudo zypper install -y python310
+            ;;
+        alpine)
+            echo "[🐧] Detected Alpine Linux"
+            sudo apk add python3=~3.10
+            ;;
+        macos)
+            echo "[🔴] Detected macOS"
+            if ! command -v brew &> /dev/null; then
+                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            fi
+            brew install python@3.10
+            ;;
+        *)
+            warning "Unsupported distribution: $DISTRO. Attempting generic Python installation."
+            if command -v python3 &> /dev/null; then
+                PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
+                if [[ "$PYTHON_VERSION" == 3.10* ]]; then
+                    success "Using existing Python 3.10"
+                    return
+                fi
+            fi
+            error_exit "Cannot install Python 3.10 on $DISTRO"
+            ;;
+    esac
+    
+    # Verify Python 3.10 installation
+    if ! command -v python3.10 &> /dev/null; then
+        error_exit "Failed to install Python 3.10"
+    fi
+    
+    success "Python 3.10 installed successfully"
 }
 
 # Create virtual environment
